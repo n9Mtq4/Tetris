@@ -1,5 +1,7 @@
 package com.n9mtq4.tetris.render;
 
+import com.n9mtq4.tetris.game.TetrisGame;
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -13,6 +15,7 @@ public class Display extends Canvas implements Runnable {
 	private int fps;
 	private int WIDTH;
 	private int HEIGHT;
+	private int blocksperblocks;
 	private int SCALE;
 	private boolean running;
 	private Screen screen;
@@ -20,13 +23,17 @@ public class Display extends Canvas implements Runnable {
 	public int[] pixels;
 	private BufferedImage img;
 	
-	public Display(int width, int height, int scale) {
+	private TetrisGame game;
+	
+	public Display(int width, int height, int blocksperblocks, int scale) {
 		
 		this.WIDTH = width;
 		this.HEIGHT = height;
+		this.blocksperblocks = blocksperblocks;
 		this.SCALE = scale;
 		this.setSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		
+		game = new TetrisGame(this);
 		screen = new Screen(this);
 		
 		img = new BufferedImage(WIDTH * SCALE, HEIGHT * SCALE, BufferedImage.TYPE_INT_RGB);
@@ -132,7 +139,7 @@ public class Display extends Canvas implements Runnable {
 		g.setColor(new Color(255, 255, 0));
 		g.setFont(new Font("Verdana", Font.BOLD, 24));
 		g.drawString(String.valueOf(getFps()), 0, 30);
-		getScreen().render();
+		getScreen().render(g);
 		g.dispose();
 		bs.show();
 		
@@ -200,6 +207,30 @@ public class Display extends Canvas implements Runnable {
 	
 	public void setImg(BufferedImage img) {
 		this.img = img;
+	}
+	
+	public int getBlocksperblocks() {
+		return blocksperblocks;
+	}
+	
+	public void setBlocksperblocks(int blocksperblocks) {
+		this.blocksperblocks = blocksperblocks;
+	}
+	
+	public int getSCALE() {
+		return SCALE;
+	}
+	
+	public void setSCALE(int SCALE) {
+		this.SCALE = SCALE;
+	}
+	
+	public TetrisGame getGame() {
+		return game;
+	}
+	
+	public void setGame(TetrisGame game) {
+		this.game = game;
 	}
 	
 }

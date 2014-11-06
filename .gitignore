@@ -1,0 +1,5 @@
+.idea/
+plugins/*
+out/
+.DS_Store
+tetris.iml

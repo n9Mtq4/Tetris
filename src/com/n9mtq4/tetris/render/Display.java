@@ -13,21 +13,23 @@ public class Display extends Canvas implements Runnable {
 	private int fps;
 	private int WIDTH;
 	private int HEIGHT;
+	private int SCALE;
 	private boolean running;
 	private Screen screen;
 	private Thread thread;
 	public int[] pixels;
 	private BufferedImage img;
 	
-	public Display(int width, int height) {
+	public Display(int width, int height, int scale) {
 		
 		this.WIDTH = width;
 		this.HEIGHT = height;
-		this.setSize(new Dimension(WIDTH, HEIGHT));
+		this.SCALE = scale;
+		this.setSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		
 		screen = new Screen(this);
 		
-		img = new BufferedImage(WIDTH , HEIGHT, BufferedImage.TYPE_INT_RGB);
+		img = new BufferedImage(WIDTH * SCALE, HEIGHT * SCALE, BufferedImage.TYPE_INT_RGB);
 		pixels = ((DataBufferInt) img.getRaster().getDataBuffer()).getData();
 		
 	}
@@ -126,7 +128,7 @@ public class Display extends Canvas implements Runnable {
 		}
 		
 		Graphics g = bs.getDrawGraphics();
-		g.drawImage(getImg(), 0, 0, getHEIGHT(), getHEIGHT(), null);
+		g.drawImage(getImg(), 0, 0, getHEIGHT() * SCALE, getHEIGHT() * SCALE, null);
 		g.setColor(new Color(255, 255, 0));
 		g.setFont(new Font("Verdana", Font.BOLD, 24));
 		g.drawString(String.valueOf(getFps()), 0, 30);

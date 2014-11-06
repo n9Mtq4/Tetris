@@ -12,7 +12,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		display = new Display(300, 600);
+		display = new Display(20, 40, 10);
 		window = new TetrisWindow(display);
 		display.start();
 		

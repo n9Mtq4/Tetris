@@ -1,5 +1,6 @@
 package com.n9mtq4.tetris;
 
+import com.n9mtq4.console.lib.Console;
 import com.n9mtq4.tetris.render.Display;
 
 /**
@@ -12,9 +13,14 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		display = new Display(20, 40, 10);
+		Console c = new Console();
+		c.redirectStdoutOn(true);
+		
+		display = new Display(20, 40, 2, 10);
 		window = new TetrisWindow(display);
 		display.start();
+		
+		new DebugConsoleHook(display).addToConsole(c);
 		
 	}
 	

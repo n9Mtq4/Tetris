@@ -14,7 +14,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Console c = new Console();
-		c.redirectStdoutOn(true);
+//		c.redirectStdoutOn(true);
 		
 		display = new Display(20, 40, 2, 10);
 		window = new TetrisWindow(display);

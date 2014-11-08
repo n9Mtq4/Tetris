@@ -25,9 +25,9 @@ public class Screen extends Render {
 			
 			int x = i % display.getWIDTH();
 			int y = i / display.getHEIGHT();
-			if (t.getIndex(x, y) != i) {
+/*			if (t.getIndex(x, y) != i) {
 				System.out.println("Error in code");
-			}
+			}*/
 			TetrisBlock b = t.blocks[i];
 			g.fillRect(x * display.getSCALE(), y * display.getSCALE(), (x + 1) * display.getSCALE(), (y + 1) * display.getSCALE());
 			

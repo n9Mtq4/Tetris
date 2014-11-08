@@ -135,11 +135,15 @@ public class Display extends Canvas implements Runnable {
 		}
 		
 		Graphics g = bs.getDrawGraphics();
+		getScreen().render(g);
 		g.drawImage(getImg(), 0, 0, getHEIGHT() * SCALE, getHEIGHT() * SCALE, null);
+		Color bc = g.getColor();
+		Font bf = g.getFont();
 		g.setColor(new Color(255, 255, 0));
 		g.setFont(new Font("Verdana", Font.BOLD, 24));
 		g.drawString(String.valueOf(getFps()), 0, 30);
-		getScreen().render(g);
+		g.setColor(bc);
+		g.setFont(bf);
 		g.dispose();
 		bs.show();
 		
